@@ -82,7 +82,7 @@ in {
     description = "ROS Master";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.rosPackages.humble.ros_core}/bin/roscore";
+      ExecStart = "${pkgs.rosPackages.humble.ros-core}/bin/roscore";
       Restart = "on-failure";
       RestartSec = 5;
     };
