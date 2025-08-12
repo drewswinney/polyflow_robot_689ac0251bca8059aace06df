@@ -65,7 +65,7 @@ in {
     description = "Clone the robot git repository and start ROS";
     wantedBy = [ "multi-user.target" ]; # Or a more specific target if needed
     after = [ "network-online.target" ]; # Ensure network is available
-    script = ''
+    ExecStart = "${pkgs.writeShellScript "clone-repo" ''
       export HOME=/home/${user}
       cd /home/${user}
       ${pkgs.git}/bin/git config --global --unset https.proxy
@@ -73,7 +73,7 @@ in {
       chown -R ${user}:users /home/admin/polyflow_robot_689ac0251bca8059aace06df
       cd polyflow_robot_689ac0251bca8059aace06df
       nix develop
-    '';
+    ''}";
   };
 
   services.vscode-server.enable = true;
