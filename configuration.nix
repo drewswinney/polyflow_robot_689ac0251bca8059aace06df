@@ -70,7 +70,7 @@ in {
       echo pkgs.git
       ${pkgs.git}/bin/git config --global --unset https.proxy
       ${pkgs.git}/bin/git clone https://github.com/drewswinney/polyflow_robot_689ac0251bca8059aace06df.git
-      chown -R ${user}:users /home/admin/polyflow_robot_{{ROBOT_ID}}
+      chown -R ${user}:users /home/admin/polyflow_robot_689ac0251bca8059aace06df
       cd polyflow_robot_{{ROBOT_ID}}
       nix develop
     '';
