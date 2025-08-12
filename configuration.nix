@@ -66,6 +66,7 @@ in {
     wantedBy = [ "multi-user.target" ]; # Or a more specific target if needed
     after = [ "network-online.target" ]; # Ensure network is available
     script = ''
+      export HOME=/home/admin
       cd /home/${user}
       echo pkgs.git
       ${pkgs.git}/bin/git config --global --unset https.proxy
