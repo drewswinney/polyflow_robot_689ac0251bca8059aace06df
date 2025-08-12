@@ -60,7 +60,7 @@ in {
     };
   };
 
-   # Services
+  # Services
   systemd.services.polyflow_startup = {
     description = "Clone the robot git repository and start ROS";
     wantedBy = [ "multi-user.target" ]; # Or a more specific target if needed
