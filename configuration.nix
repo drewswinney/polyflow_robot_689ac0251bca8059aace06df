@@ -14,7 +14,7 @@ in {
   ];
 
   imports = [
-    "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git";}}/raspberry-pi/4"
+     "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; rev="26ed7a0d4b8741fe1ef1ee6fa64453ca056ce113"; }}/raspberry-pi/4"
   ];
   
   boot = {
@@ -60,15 +60,18 @@ in {
     };
   };
 
-  # Services
-  systemd.services.git-clone = {
-    description = "Clone the robot git repository on startup";
+   # Services
+  systemd.services.polyflow_startup = {
+    description = "Clone the robot git repository and start ROS";
     wantedBy = [ "multi-user.target" ]; # Or a more specific target if needed
     after = [ "network-online.target" ]; # Ensure network is available
     script = ''
-      ${pkgs.git}/bin/git config --global --unset https.proxy
-      ${pkgs.git}/bin/git clone https://github.com/drewswinney/polyflow_robot_689ac0251bca8059aace06df.git ~/home/admin
-      chown -R ${user}:${user} ~/home/admin/polyflow_robot_689ac0251bca8059aace06df
+      cd /home/${user}
+      git config --global --unset https.proxy
+      git clone https://github.com/{{GITHUB_USER}}/polyflow_robot_{{ROBOT_ID}}.git
+      chown -R ${user}:users /home/admin/polyflow_robot_{{ROBOT_ID}}
+      cd polyflow_robot_{{ROBOT_ID}}
+      nix develop
     '';
   };
 
