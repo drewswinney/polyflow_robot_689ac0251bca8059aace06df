@@ -65,15 +65,18 @@ in {
     description = "Clone the robot git repository and start ROS";
     wantedBy = [ "multi-user.target" ]; # Or a more specific target if needed
     after = [ "network-online.target" ]; # Ensure network is available
-    ExecStart = "${pkgs.writeShellScript "clone-repo" ''
-      export HOME=/home/${user}
-      cd /home/${user}
-      ${pkgs.git}/bin/git config --global --unset https.proxy
-      ${pkgs.git}/bin/git clone https://github.com/drewswinney/polyflow_robot_689ac0251bca8059aace06df.git
-      chown -R ${user}:users /home/admin/polyflow_robot_689ac0251bca8059aace06df
-      cd polyflow_robot_689ac0251bca8059aace06df
-      nix develop
-    ''}";
+    serviceConfig = {
+      ExecStart = "${pkgs.writeShellScript "clone-repo" ''
+        export HOME=/home/${user}
+        cd /home/${user}
+        ${pkgs.git}/bin/git config --global --unset https.proxy
+        ${pkgs.git}/bin/git clone https://github.com/drewswinney/polyflow_robot_689ac0251bca8059aace06df.git
+        chown -R ${user}:users /home/admin/polyflow_robot_689ac0251bca8059aace06df
+        cd polyflow_robot_689ac0251bca8059aace06df
+        nix develop
+      ''}";
+      StandardError = "inherit"; # Merges stderr with stdout
+    };
   };
 
   services.vscode-server.enable = true;
