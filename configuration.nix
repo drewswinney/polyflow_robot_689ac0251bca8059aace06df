@@ -67,8 +67,9 @@ in {
     after = [ "network-online.target" ]; # Ensure network is available
     script = ''
       cd /home/${user}
+      echo pkgs.git
       ${pkgs.git}/bin/git config --global --unset https.proxy
-      ${pkgs.git}/bin/git clone https://github.com/{{GITHUB_USER}}/polyflow_robot_{{ROBOT_ID}}.git
+      ${pkgs.git}/bin/git clone https://github.com/drewswinney/polyflow_robot_689ac0251bca8059aace06df.git
       chown -R ${user}:users /home/admin/polyflow_robot_{{ROBOT_ID}}
       cd polyflow_robot_{{ROBOT_ID}}
       nix develop
