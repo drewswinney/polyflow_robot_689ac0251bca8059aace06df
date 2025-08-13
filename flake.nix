@@ -2,7 +2,7 @@
   inputs = {
     nix-ros-overlay.url = "github:lopsided98/nix-ros-overlay/master";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    nix-ros-workspace.url = "github:hacker1024/nix-ros-workspace";
+    nix-ros-workspace.url = "github:hacker1024/nix-ros-workspace/master";
     # Ensure nixpkgs follows nix-ros-overlay's version to avoid compatibility issues
     nixpkgs.follows = "nix-ros-overlay/nixpkgs"; 
   };
