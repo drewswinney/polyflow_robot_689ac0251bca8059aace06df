@@ -9,7 +9,7 @@
   outputs = { self, nixpkgs, nix-ros-overlay, vscode-server, ... }@inputs:
     let
         nix-ros-workspace = (import github:hacker1024/nix-ros-workspace/master { });
-        ros-workspace = nixpkgs.rosPackages.buildROSWorkspace {
+        ros-workspace = nix-ros-workspace.rosPackages.buildROSWorkspace {
           name = "ros_workspace";
           devPackages = {
             inherit (nixpkgs) roscpp; # Example: roscpp under active development
