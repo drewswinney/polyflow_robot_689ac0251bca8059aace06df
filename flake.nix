@@ -20,13 +20,13 @@
         ros-workspace = nixpkgs.rosPackages.buildROSWorkspace {
           name = "ros_workspace";
           devPackages = {
-            inherit (pkgs) roscpp; # Example: roscpp under active development
+            inherit (nixpkgs) roscpp; # Example: roscpp under active development
           };
           prebuiltPackages = {
-            inherit (pkgs) rviz2; # Example: rviz2 as a prebuilt dependency
+            inherit (nixpkgs) rviz2; # Example: rviz2 as a prebuilt dependency
           };
           prebuiltShellPackages = {
-            inherit (pkgs) gdb; # Example: gdb for debugging
+            inherit (nixpkgs) gdb; # Example: gdb for debugging
           };
         };
     in { 
