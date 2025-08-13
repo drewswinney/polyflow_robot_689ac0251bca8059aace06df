@@ -8,7 +8,17 @@
 
   outputs = { self, nixpkgs, nix-ros-overlay, vscode-server, ... }@inputs:
     let
+        pkgsOverride = (inputs: {
+          nixpkgs = {
+            config.allowUnfree = true;
+              overlays = [
+                nix-ros-overlay.overlays.default
+              ];
+            };
+        });
+
         nix-ros-workspace = import (fetchTarball { url="https://github.com/hacker1024/nix-ros-workspace/archive/master.tar.gz"; sha256="0a7n9zpsxzw88s1y7c4gpv236i2vs0pa4yks36qhr4py80hnnv5b"; });
+        
         ros-workspace = nix-ros-workspace.buildROSWorkspace {
           name = "ros_workspace";
           devPackages = {
