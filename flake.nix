@@ -9,7 +9,6 @@
   outputs = { self, nixpkgs, nix-ros-overlay, vscode-server, ... }@inputs:
     let
         nix-ros-workspace = (import github:hacker1024/nix-ros-workspace/master { });
-        nixpkgs.overlays = [ nix-ros-overlay.overlays.default nix-ros-workspace.overlay ];
         ros-workspace = nixpkgs.rosPackages.buildROSWorkspace {
           name = "ros_workspace";
           devPackages = {
@@ -32,7 +31,7 @@
             vscode-server.nixosModules.default
             nix-ros-overlay.nixosModules.default
             # Add the nix-ros-overlay to your system overlays
-            nixpkgs.overlays
+            { nixpkgs.overlays = [ nix-ros-overlay.overlays.default nix-ros-workspace.overlay ]; }
             # You may also need to include nixos-hardware for specific Raspberry Pi 4 hardware support
             # nixos-hardware.nixosModules.raspberry-pi-4 
           ];
