@@ -37,6 +37,7 @@
             # Base NixOS modules
             ./configuration.nix 
             vscode-server.nixosModules.default
+            nix-ros-overlay.nixosModules.default
             # Add the nix-ros-overlay to your system overlays
             { nixpkgs.overlays = [ nix-ros-overlay.overlays.default ]; }
             # You may also need to include nixos-hardware for specific Raspberry Pi 4 hardware support
