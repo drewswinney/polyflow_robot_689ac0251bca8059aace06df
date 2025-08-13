@@ -19,18 +19,7 @@
 
         nix-ros-workspace = import (fetchTarball { url="https://github.com/hacker1024/nix-ros-workspace/archive/master.tar.gz"; sha256="0a7n9zpsxzw88s1y7c4gpv236i2vs0pa4yks36qhr4py80hnnv5b"; });
         
-        ros-workspace = nix-ros-workspace.buildROSWorkspace {
-          name = "ros_workspace";
-          devPackages = {
-            inherit (nixpkgs) roscpp; # Example: roscpp under active development
-          };
-          prebuiltPackages = {
-            inherit (nixpkgs) rviz2; # Example: rviz2 as a prebuilt dependency
-          };
-          prebuiltShellPackages = {
-            inherit (nixpkgs) gdb; # Example: gdb for debugging
-          };
-        };
+        ros-workspace = nixpkgs.rosPackages.humble.callPackage ./build-workspace.nix {}
     in { 
       defaultPackage."aarch64-linux" = ros-workspace;
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
