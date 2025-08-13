@@ -75,7 +75,7 @@ in {
       if [[ -d "$DIRECTORY" ]];
         then
           cd "$DIRECTORY"
-          git pull
+          ${pkgs.git}/bin/git pull
         else
           cd /home/${user}
           ${pkgs.git}/bin/git config --global --unset https.proxy
@@ -84,7 +84,7 @@ in {
           cd polyflow_robot_689ac0251bca8059aace06df
         fi
 
-        ${pkgs.nix}/bin/nix-build
+        ${pkgs.nix}/bin/nix build .
       ''}";
       StandardError = "inherit"; # Merges stderr with stdout
     };
