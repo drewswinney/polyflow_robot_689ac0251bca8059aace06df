@@ -78,7 +78,7 @@ in {
     };
   };
 
-  services.ros = {
+  services.ros2 = {
     enable = true;
     distro = "humble";
   };
