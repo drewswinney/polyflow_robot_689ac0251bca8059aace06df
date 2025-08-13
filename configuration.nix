@@ -78,14 +78,9 @@ in {
     };
   };
 
-  systemd.services.roscore = {
-    description = "ROS Master";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.rosPackages.humble.ros-core}/share/ros_core";
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
+  services.ros = {
+    enable = true;
+    distro = "humble";
   };
 
   services.vscode-server.enable = true;
