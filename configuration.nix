@@ -77,7 +77,7 @@ in {
         chown -R ${user}:users /home/admin/polyflow_robot_689ac0251bca8059aace06df
         cd polyflow_robot_689ac0251bca8059aace06df
 
-        ${pkgs.nix}/bin/nix-build .#default-packages."aarch64-linux"
+        ${pkgs.nix}/bin/nix-build
       ''}";
       StandardError = "inherit"; # Merges stderr with stdout
     };
