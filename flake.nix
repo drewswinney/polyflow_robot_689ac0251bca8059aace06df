@@ -8,7 +8,7 @@
 
   outputs = { self, nixpkgs, nix-ros-overlay, vscode-server, ... }@inputs:
     let
-        nix-ros-workspace = import (fetchTarball { url="https://github.com/hacker1024/nix-ros-workspace/archive/master.tar.gz"; sha256="d389c0ad68267b85b9ac3b7350801dd0110ed669"; });
+        nix-ros-workspace = import (fetchTarball { url="https://github.com/hacker1024/nix-ros-workspace/archive/master.tar.gz"; sha256="00yb8chwi2mxm7xr2nzlmglvbpap965iyvpmhmvivan42hirwzkd"; });
         ros-workspace = nix-ros-workspace.buildROSWorkspace {
           name = "ros_workspace";
           devPackages = {
