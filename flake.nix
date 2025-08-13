@@ -16,7 +16,21 @@
             ];
           };
         });
+
+        ros-workspace = pkgs.rosPackages.buildROSWorkspace {
+          name = "ros_workspace";
+          devPackages = {
+            inherit (pkgs) roscpp; # Example: roscpp under active development
+          };
+          prebuiltPackages = {
+            inherit (pkgs) rviz2; # Example: rviz2 as a prebuilt dependency
+          };
+          prebuiltShellPackages = {
+            inherit (pkgs) gdb; # Example: gdb for debugging
+          };
+        };
     in { 
+      defaultPackage.${pkgs.system} = ros-workspace;
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
