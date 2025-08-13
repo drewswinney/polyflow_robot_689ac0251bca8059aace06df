@@ -30,7 +30,7 @@
           };
         };
     in { 
-      defaultPackage.${pkgs.system} = ros-workspace;
+      defaultPackage.${nixpkgs.system} = ros-workspace;
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
