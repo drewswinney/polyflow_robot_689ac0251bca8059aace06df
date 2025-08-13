@@ -6,7 +6,7 @@
     nixpkgs.follows = "nix-ros-overlay/nixpkgs"; 
   };
 
-  outputs = { self, nixpkgs, nix-ros-workspace, nix-ros-overlay, vscode-server, ... }@inputs:
+  outputs = { self, nixpkgs, nix-ros-overlay, vscode-server, ... }@inputs:
     let
         nix-ros-workspace-overlay = (import github:hacker1024/nix-ros-workspace { }).overlay;
         ros-workspace = nix-ros-workspace-overlay.buildROSWorkspace {
