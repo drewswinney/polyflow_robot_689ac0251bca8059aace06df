@@ -2,14 +2,14 @@
   inputs = {
     nix-ros-overlay.url = "github:lopsided98/nix-ros-overlay/master";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    nix-ros-workspace.url = "github:hacker1024/nix-ros-workspace";
     # Ensure nixpkgs follows nix-ros-overlay's version to avoid compatibility issues
     nixpkgs.follows = "nix-ros-overlay/nixpkgs"; 
   };
 
-  outputs = { self, nixpkgs, nix-ros-overlay, nix-ros-workspace, vscode-server, ... }@inputs:
+  outputs = { self, nixpkgs, nix-ros-workspace, vscode-server, ... }@inputs:
     let
-        ros-workspace = nix-ros-workspace.lib.buildROSWorkspace {
+        nix-ros-workspace-overlay = (import github:hacker1024/nix-ros-workspace { }).overlay;
+        ros-workspace = nix-ros-workspace-overlay.buildROSWorkspace {
           name = "ros_workspace";
           devPackages = {
             inherit (nixpkgs) roscpp; # Example: roscpp under active development
