@@ -77,11 +77,7 @@ in {
         chown -R ${user}:users /home/admin/polyflow_robot_689ac0251bca8059aace06df
         cd polyflow_robot_689ac0251bca8059aace06df
 
-        ${pkgs.nix}/bin/nix-build \
-          --extra-substituters 'https://ros.cachix.org' --extra-trusted-public-keys 'ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=' \
-          https://github.com/hacker1024/nix-ros-workspace/archive/master.tar.gz -A cli \
-          --argstr distro humble \
-          --argstr rosPackages 'rviz2 turtlesim'
+        ${pkgs.nix}/bin/nix-build .#default-packages."aarch64-linux"
       ''}";
       StandardError = "inherit"; # Merges stderr with stdout
     };
