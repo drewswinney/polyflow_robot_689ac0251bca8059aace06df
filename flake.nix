@@ -17,7 +17,7 @@
           };
         });
 
-        ros-workspace = pkgs.rosPackages.buildROSWorkspace {
+        ros-workspace = nixpkgs.rosPackages.buildROSWorkspace {
           name = "ros_workspace";
           devPackages = {
             inherit (pkgs) roscpp; # Example: roscpp under active development
