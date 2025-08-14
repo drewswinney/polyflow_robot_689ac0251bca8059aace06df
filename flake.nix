@@ -20,18 +20,7 @@
             };
         });
         
-        ros-workspace = nix-ros-workspace.overlay.rosPackages.humble.buildROSWorkspace {
-          name = "ros_workspace";
-          devPackages = {
-            inherit (nixpkgs) roscpp; # Example: roscpp under active development
-          };
-          prebuiltPackages = {
-            inherit (nixpkgs) rviz2; # Example: rviz2 as a prebuilt dependency
-          };
-          prebuiltShellPackages = {
-            inherit (nixpkgs) gdb; # Example: gdb for debugging
-          };
-        };
+        ros-workspace = nix-ros-workspace.overlay.rosPackages.humble.callPackage ./build-workspace.nix {};
     in { 
       defaultPackage."aarch64-linux" = ros-workspace;
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
