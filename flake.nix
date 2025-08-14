@@ -19,9 +19,9 @@
       devShells.default = nixpkgs.mkShell {
         name = "Polyflow";
         packages = [
-          pkgs.colcon
+          nixpkgs.colcon
           # ... other non-ROS packages
-          (with pkgs.rosPackages.humble; buildEnv {
+          (with nixpkgs.rosPackages.humble; buildEnv {
             paths = [
               ros-core
               # ... other ROS packages
