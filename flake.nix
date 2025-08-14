@@ -16,7 +16,7 @@
             };
         });
 
-        system = 'aarch64-linux';
+        system = "aarch64-linux";
         pkgs = import nixpkgs { inherit system; };
 
     in { 
