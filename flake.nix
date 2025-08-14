@@ -20,7 +20,7 @@
             };
         });
         
-        ros-workspace = nix-ros-workspace.overlay.buildROSWorkspace ./build-workspace.nix {};
+        ros-workspace = nix-ros-workspace.overlay.rosPackages.humble.buildROSWorkspace 
     in { 
       defaultPackage."aarch64-linux" = ros-workspace;
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
