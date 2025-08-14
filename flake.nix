@@ -31,7 +31,7 @@
         '';
       };
 
-      nixosConfigurations."689ac0251bca8059aace06df" = pkgs.lib.nixosSystem {
+      nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
           system = system;
           modules = [
             # Base NixOS modules
