@@ -83,8 +83,6 @@ in {
           chown -R ${user}:users /home/admin/polyflow_robot_689ac0251bca8059aace06df
           cd polyflow_robot_689ac0251bca8059aace06df
         fi
-
-        ${pkgs.nix}/bin/nix-shell
       ''}";
       StandardError = "inherit"; # Merges stderr with stdout
     };
