@@ -16,10 +16,11 @@
             };
         });
 
-        pkgs = import nixpkgs { inherit 'aarch64-linux'; };
+        system = 'aarch64-linux';
+        pkgs = import nixpkgs { inherit system; };
 
     in { 
-      devShells.aarch64-linux.default = pkgs.mkShell {
+      devShells.${system}.default = pkgs.mkShell {
         name = "Polyflow";
         packages = [
           nixpkgs.colcon
@@ -37,7 +38,7 @@
       };
 
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
+          system = ${system};
           modules = [
             # Base NixOS modules
             ./configuration.nix 
