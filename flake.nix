@@ -2,14 +2,11 @@
   inputs = {
     nix-ros-overlay.url = "github:lopsided98/nix-ros-overlay/master";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    # Ensure nixpkgs follows nix-ros-overlay's version to avoid compatibility issues
     nixpkgs.follows = "nix-ros-overlay/nixpkgs"; 
   };
 
   outputs = { self, nixpkgs, nix-ros-overlay, vscode-server, ... }@inputs:
     let
-        nix-ros-workspace = import (fetchTarball { url="https://github.com/hacker1024/nix-ros-workspace/archive/master.tar.gz"; sha256="0a7n9zpsxzw88s1y7c4gpv236i2vs0pa4yks36qhr4py80hnnv5b"; });
-        
         pkgsOverride = (inputs: {
           nixpkgs = {
             config.allowUnfree = true;
