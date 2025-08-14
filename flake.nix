@@ -28,6 +28,9 @@
             ];
           })
         ];
+        shellHook = ''
+          echo "Welcome to the Polyflow ROS environment!"
+        '';
       };
 
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
