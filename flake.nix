@@ -16,7 +16,7 @@
             };
         });
     in { 
-      devShells.default = nixpkgs.mkShell {
+      devShells.aarch64-linux.default = nixpkgs.mkShell {
         name = "Polyflow";
         packages = [
           nixpkgs.colcon
