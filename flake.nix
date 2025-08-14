@@ -38,7 +38,7 @@
       };
 
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
-          system = ${system};
+          system = system;
           modules = [
             # Base NixOS modules
             ./configuration.nix 
