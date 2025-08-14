@@ -28,6 +28,7 @@
         ];
         shellHook = ''
           echo "Welcome to the Polyflow ROS environment!"
+          export SHELL=${lib.getExe pkgs.bashInteractive}
         '';
       };
 
