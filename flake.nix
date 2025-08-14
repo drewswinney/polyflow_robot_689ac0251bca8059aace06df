@@ -15,8 +15,11 @@
               ];
             };
         });
+
+        pkgs = import nixpkgs { inherit 'aarch64-linux'; };
+
     in { 
-      devShells.aarch64-linux.default = nixpkgs.mkShell {
+      devShells.aarch64-linux.default = pkgs.mkShell {
         name = "Polyflow";
         packages = [
           nixpkgs.colcon
