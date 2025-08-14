@@ -16,6 +16,7 @@
     in { 
       devShells.${system}.default = pkgs.mkShell {
         name = "Polyflow";
+        buildInputs=[pkgs.bashInteractive];
         packages = [
           pkgs.colcon
           # ... other non-ROS packages
@@ -28,7 +29,7 @@
         ];
         shellHook = ''
           echo "Welcome to the Polyflow ROS environment!"
-          export SHELL=${lib.getExe pkgs.bashInteractive}
+          export SHELL=${nixpkgs.lib.getExe pkgs.bashInteractive}
         '';
       };
 
