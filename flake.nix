@@ -12,7 +12,6 @@
             config.allowUnfree = true;
               overlays = [
                 nix-ros-overlay.overlays.default
-                nix-ros-workspace.overlay
               ];
             };
         });
