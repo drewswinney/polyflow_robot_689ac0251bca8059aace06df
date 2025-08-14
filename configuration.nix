@@ -84,7 +84,7 @@ in {
           cd polyflow_robot_689ac0251bca8059aace06df
         fi
 
-        ${pkgs.nix}/bin/nix build .
+        ${pkgs.nix}/bin/nix-shell
       ''}";
       StandardError = "inherit"; # Merges stderr with stdout
     };
