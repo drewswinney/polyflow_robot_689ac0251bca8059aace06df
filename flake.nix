@@ -19,10 +19,8 @@
               ];
             };
         });
-        
-        ros-workspace = nix-ros-workspace.overlay.rosPackages.humble.callPackage ./build-workspace.nix {};
     in { 
-      defaultPackage."aarch64-linux" = ros-workspace;
+      defaultPackage."aarch64-linux" = nix-ros-workspace.overlay.rosPackages.humble.callPackage ./build-workspace.nix {};
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
