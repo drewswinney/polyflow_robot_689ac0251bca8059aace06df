@@ -7,17 +7,11 @@
 
   outputs = { self, nixpkgs, nix-ros-overlay, vscode-server, ... }@inputs:
     let
-        pkgsOverride = (inputs: {
-          nixpkgs = {
-            config.allowUnfree = true;
-              overlays = [
-                nix-ros-overlay.overlays.default
-              ];
-            };
-        });
-
         system = "aarch64-linux";
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { 
+          inherit system; 
+          overlays = [ nix-ros-overlay.overlays.default ]; 
+        };
 
     in { 
       devShells.${system}.default = pkgs.mkShell {
@@ -25,7 +19,7 @@
         packages = [
           pkgs.colcon
           # ... other non-ROS packages
-          (with nixpkgs.rosPackages.humble; buildEnv {
+          (with pkgs.rosPackages.humble; buildEnv {
             paths = [
               ros-core
               # ... other ROS packages
@@ -37,7 +31,7 @@
         '';
       };
 
-      nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations."689ac0251bca8059aace06df" = pkgs.lib.nixosSystem {
           system = system;
           modules = [
             # Base NixOS modules
@@ -45,7 +39,6 @@
             vscode-server.nixosModules.default
             nix-ros-overlay.nixosModules.default
             # Add the nix-ros-overlay to your system overlays
-            { nixpkgs.overlays = [ nix-ros-overlay.overlays.default ]; }
             # You may also need to include nixos-hardware for specific Raspberry Pi 4 hardware support
             # nixos-hardware.nixosModules.raspberry-pi-4 
           ];
