@@ -20,7 +20,20 @@
             };
         });
     in { 
-      defaultPackage."aarch64-linux" = nix-ros-workspace.overlay.rosPackages.humble.callPackage ./build-workspace.nix {};
+      devShells.default = pkgs.mkShell {
+        name = "Polyflow";
+        packages = [
+          pkgs.colcon
+          # ... other non-ROS packages
+          (with pkgs.rosPackages.humble; buildEnv {
+            paths = [
+              ros-core
+              # ... other ROS packages
+            ];
+          })
+        ];
+      };
+
       nixosConfigurations."689ac0251bca8059aace06df" = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
