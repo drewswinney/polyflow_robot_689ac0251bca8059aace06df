@@ -25,7 +25,7 @@
         packages = [
           pkgs.colcon
           # ... other non-ROS packages
-          (with pkgs.rosPackages.humble; buildEnv {
+          (with nixpkgs.rosPackages.humble; buildEnv {
             paths = [
               ros-core
               # ... other ROS packages
