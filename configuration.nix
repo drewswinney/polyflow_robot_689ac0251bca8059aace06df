@@ -47,7 +47,7 @@ in {
     mode = "0644";
   };
 
-  environment.systemPackages = with pkgs; with rosPackages.humble; [ vim git wget inetutils ros-base ros-core ];
+  environment.systemPackages = with pkgs; with rosPackages.humble; [ vim git wget inetutils ros-base ros-core gh ];
 
   services.openssh.enable = true;
 
